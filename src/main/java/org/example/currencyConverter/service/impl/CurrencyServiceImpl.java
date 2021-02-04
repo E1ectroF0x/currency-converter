@@ -1,15 +1,19 @@
 package org.example.currencyConverter.service.impl;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.currencyConverter.model.Currency;
 import org.example.currencyConverter.service.CurrencyService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class CurrencyServiceImpl implements CurrencyService {
 
     private List<Currency> currencyList;
@@ -19,7 +23,10 @@ public class CurrencyServiceImpl implements CurrencyService {
         RestTemplate restTemplate = new RestTemplate();
         Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
         currencyList = currencies == null ? Collections.emptyList() : Arrays.asList(currencies);
-
+        Date dateNow = new Date();
+        currencyList = currencyList.stream()
+                .filter(currency -> currency.getDateEnd().getTime() > dateNow.getTime())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -34,11 +41,6 @@ public class CurrencyServiceImpl implements CurrencyService {
                 .findFirst()
                 .orElse(new Currency());
     }
-
-
-
-
-
 
 
     /*

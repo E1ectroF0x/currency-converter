@@ -5,6 +5,7 @@ package org.example.currencyConverter.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Data
@@ -21,5 +22,11 @@ public class Currency {
 
     @JsonProperty("Cur_Abbreviation")
     private String abbreviation;
+
+    @JsonProperty("Cur_DateStart")
+    private Date dateStart;
+
+    @JsonProperty("Cur_DateEnd")
+    private Date dateEnd;
 
 }
