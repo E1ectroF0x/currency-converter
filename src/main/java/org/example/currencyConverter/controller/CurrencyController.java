@@ -21,11 +21,16 @@ public class CurrencyController {
     }
      */
 
-    @GetMapping("/all")
-    public List<Currency> getCurrencyList() {
-        return currencyService.getCurrencyList();
+    @GetMapping("/{abbreviation}")
+    public Currency getCurrencyByAbbreviation(@PathVariable String abbreviation){
+       return currencyService.getCurrencyByAbbreviation(abbreviation);
     }
 
+    @GetMapping("/all")
+    public List<Currency> getCurrencyList() {
+        return currencyService.getAllCurrencies();
+    }
+/*
     @GetMapping("/{value}")
     public List<Currency> getSortedCurrencies(@PathVariable double value) {
         return currencyService.getSortedCurrencies(value);
@@ -40,5 +45,5 @@ public class CurrencyController {
     public List<Currency> getSortedCurrenciesParam(@RequestParam double value) {
         return currencyService.getSortedCurrencies(value);
     }
-
+*/
 }

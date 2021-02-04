@@ -4,15 +4,44 @@ package org.example.currencyConverter.service.impl;
 import org.example.currencyConverter.model.Currency;
 import org.example.currencyConverter.service.CurrencyService;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
 public class CurrencyServiceImpl implements CurrencyService {
 
+    private List<Currency> currencyList;
+
+    public CurrencyServiceImpl(){
+        currencyList = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
+        currencyList = currencies == null ? Collections.emptyList() : Arrays.asList(currencies);
+
+    }
+
+    @Override
+    public List<Currency> getAllCurrencies() {
+        return currencyList;
+    }
+
+    @Override
+    public Currency getCurrencyByAbbreviation(String abbreviation) {
+        return currencyList.stream()
+                .filter(currency -> currency.getAbbreviation().equals(abbreviation))
+                .findFirst()
+                .orElse(new Currency());
+    }
+
+
+
+
+
+
+
+    /*
     private List<Currency> currencyList;
 
     public CurrencyServiceImpl() {
@@ -32,6 +61,8 @@ public class CurrencyServiceImpl implements CurrencyService {
         currencyList.add(currency2);
     }
 
+
+
     @Override
     public Currency getCurrency() {
         Currency currency = new Currency();
@@ -40,6 +71,8 @@ public class CurrencyServiceImpl implements CurrencyService {
         currency.setValue(1.0);
         return currency;
     }
+
+
 
     @Override
     public List<Currency> getCurrencyList() {
@@ -52,6 +85,5 @@ public class CurrencyServiceImpl implements CurrencyService {
                .filter(currency -> currency.getValue() >= value)
                .collect(Collectors.toList());
     }
-
-
+     */
 }
