@@ -1,11 +1,10 @@
 package org.example.currencyConverter.controller;
 
 import org.example.currencyConverter.model.Currency;
+import org.example.currencyConverter.model.ValueModel;
 import org.example.currencyConverter.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,14 +15,30 @@ public class CurrencyController {
     @Autowired
     private CurrencyService currencyService;
 
-    @GetMapping
+    /*@GetMapping
     public Currency getCurrency() {
         return currencyService.getCurrency();
     }
+     */
 
     @GetMapping("/all")
     public List<Currency> getCurrencyList() {
         return currencyService.getCurrencyList();
+    }
+
+    @GetMapping("/{value}")
+    public List<Currency> getSortedCurrencies(@PathVariable double value) {
+        return currencyService.getSortedCurrencies(value);
+    }
+
+    @PostMapping
+    public List<Currency> getSortedCurrenciesPost(@RequestBody ValueModel value) {
+        return currencyService.getSortedCurrencies(value.getValue());
+    }
+
+    @GetMapping
+    public List<Currency> getSortedCurrenciesParam(@RequestParam double value) {
+        return currencyService.getSortedCurrencies(value);
     }
 
 }
