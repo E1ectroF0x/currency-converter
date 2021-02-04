@@ -14,6 +14,23 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     private List<Currency> currencyList;
 
+    public CurrencyServiceImpl() {
+        currencyList = new ArrayList<>();
+
+        Currency currency1 = new Currency();
+        currency1.setUuid(UUID.randomUUID());
+        currency1.setName("DNUB");
+        currency1.setValue(2.0);
+
+        Currency currency2 = new Currency();
+        currency2.setUuid(UUID.randomUUID());
+        currency2.setName("NUB");
+        currency2.setValue(3.0);
+
+        currencyList.add(currency1);
+        currencyList.add(currency2);
+    }
+
     @Override
     public Currency getCurrency() {
         Currency currency = new Currency();
@@ -25,19 +42,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public List<Currency> getCurrencyList() {
-       currencyList = new ArrayList<>();
-       Currency currency1 = new Currency();
-       currency1.setUuid(UUID.randomUUID());
-       currency1.setName("DNUB");
-       currency1.setValue(2.0);
-       currencyList.add(currency1);
-       Currency currency2 = new Currency();
-       currency2.setUuid(UUID.randomUUID());
-       currency2.setName("NUB");
-       currency2.setValue(3.0);
-       currencyList.add(currency2);
         return currencyList;
-
     }
 
 

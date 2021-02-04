@@ -20,9 +20,10 @@ public class CurrencyController {
     public Currency getCurrency() {
         return currencyService.getCurrency();
     }
+
     @GetMapping("/all")
-    public List<Currency> getCurrencyList(){
-        return  currencyService.getCurrencyList();
+    public List<Currency> getCurrencyList() {
+        return currencyService.getCurrencyList();
     }
 
 }
