@@ -1,5 +1,7 @@
 package org.example.currencyConverter.model;
 
+
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 

@@ -2,6 +2,7 @@ package org.example.currencyConverter.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.example.currencyConverter.model.Currency;
 import org.example.currencyConverter.service.RateService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -25,14 +26,20 @@ public class RateServiceImpl implements RateService {
         rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
 
     }
+    @Override
     public Rate getRateByAbbreviation(String value){
         return rateList.stream().filter(rate -> rate.getAbbreviation().equals(value))
                 .findFirst()
                 .orElse(new Rate());
     }
+    @Override
     public Rate getRateByID(String value){
         return rateList.stream().filter(rate -> rate.getId().toString().equals(value)).findFirst()
                 .orElse(new Rate());
+    }
+    @Override
+    public List<Rate> getAllRates() {
+        return rateList;
     }
 
 }

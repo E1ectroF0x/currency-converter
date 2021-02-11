@@ -7,8 +7,7 @@ import org.example.currencyConverter.service.CurrencyService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
