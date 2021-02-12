@@ -28,7 +28,7 @@ public class RateServiceImpl implements RateService {
     }
     @Override
     public Rate getRateByAbbreviation(String value){
-        return rateList.stream().filter(rate -> rate.getAbbreviation().equals(value))
+        return rateList.stream().filter(rate -> rate.getAbbreviation().equalsIgnoreCase(value))
                 .findFirst()
                 .orElse(new Rate());
     }
