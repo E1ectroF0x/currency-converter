@@ -18,10 +18,12 @@ public class RateController {
 
     @GetMapping("/{value}")
     public Rate getRates(@PathVariable String value, @RequestParam(required = false) String type){
-        if (type.equals("1")){
+        //if (type.equals("1")){
+        if ("1".equalsIgnoreCase(type)) {
            return rateService.getRateByAbbreviation(value);
         }
-        else if(type.equals("0")){
+        //else if(type.equals("0")){
+        else if ("0".equals(type)) {
             return rateService.getRateByID(value);
         }
         else {
