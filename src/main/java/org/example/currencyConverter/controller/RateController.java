@@ -32,6 +32,11 @@ public class RateController {
 
     }
 
+    // TODO: implement api/rates/update/{id}/{value}
+    // need to implement update rate value for single currency
+    // with value must be updated date
+    // !!! NEED TO WORK WITH LOCAL RATES, NOT WITH DATABASE OBJECTS !!! (it's will be your next task))
+
 
 /*
     @GetMapping("/{value}")
