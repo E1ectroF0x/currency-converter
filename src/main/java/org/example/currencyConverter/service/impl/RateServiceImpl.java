@@ -14,8 +14,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-@Slf4j
-
 public class RateServiceImpl implements RateService {
     private List<Rate> rateList;
 
@@ -24,11 +22,10 @@ public class RateServiceImpl implements RateService {
         RestTemplate restTemplate = new RestTemplate();
         Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
         rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
-
     }
     @Override
     public Rate getRateByAbbreviation(String value){
-        return rateList.stream().filter(rate -> rate.getAbbreviation().equalsIgnoreCase(value))
+        return rateList.stream().filter(rate -> rate.getAbbreviation().equals(value))
                 .findFirst()
                 .orElse(new Rate());
     }

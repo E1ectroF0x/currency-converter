@@ -28,6 +28,7 @@ public class CurrencyController {
 
     @GetMapping("/all")
     public List<Currency> getCurrencyList() {
+        //currencyService.saveValue();
         return currencyService.getAllCurrencies();
     }
 /*

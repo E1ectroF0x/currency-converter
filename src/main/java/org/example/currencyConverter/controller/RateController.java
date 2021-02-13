@@ -18,11 +18,10 @@ public class RateController {
 
     @GetMapping("/{value}")
     public Rate getRates(@PathVariable String value, @RequestParam(required = false) String type){
-        //if (type.equals("1")){
-        if ("1".equalsIgnoreCase(type)) {
+
+        if ("1".equals(type)) {
            return rateService.getRateByAbbreviation(value);
         }
-        //else if(type.equals("0")){
         else if ("0".equals(type)) {
             return rateService.getRateByID(value);
         }
@@ -35,7 +34,6 @@ public class RateController {
     // TODO: implement api/rates/update/{id}/{value}
     // need to implement update rate value for single currency
     // with value must be updated date
-    // !!! NEED TO WORK WITH LOCAL RATES, NOT WITH DATABASE OBJECTS !!! (it's will be your next task))
 
 
 /*

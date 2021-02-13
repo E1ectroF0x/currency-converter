@@ -7,6 +7,9 @@ import lombok.Data;
 
 import java.util.Date;
 
+// TODO: add table for rates
+// rework rateService to work with DB
+
 @Data
 public class Rate {
     @JsonProperty("Cur_ID")
