@@ -15,8 +15,8 @@ import java.util.Date;
 @Data
 public class Rate {
 
-    @JsonProperty("Cur_ID")
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JsonProperty("Cur_Scale")
@@ -31,8 +31,7 @@ public class Rate {
     @JsonProperty("Cur_OfficialRate")
     private double officialRate;
 
-    @OneToOne
-    @JoinColumn(name = "currency", referencedColumnName = "id")
-    private Currency currency;
+    @JsonProperty("Cur_Id")
+    private String currency;
 
 }
