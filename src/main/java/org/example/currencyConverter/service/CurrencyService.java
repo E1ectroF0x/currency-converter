@@ -8,6 +8,7 @@ public interface CurrencyService {
 
     List<Currency> getAllCurrencies();
     Currency getCurrencyByAbbreviation(String Abbreviation);
+    void uploadCurrencies();
 
 }
 

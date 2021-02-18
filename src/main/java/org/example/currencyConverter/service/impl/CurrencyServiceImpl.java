@@ -24,11 +24,9 @@ public class CurrencyServiceImpl implements CurrencyService {
     private String apiLink;
 
 
-    public CurrencyServiceImpl(){
-        this.uploadCurrencies();
-    }
-
-    private void uploadCurrencies() {
+    @Override
+    public void uploadCurrencies() {
+        currencyRepository.deleteAll();
         List<Currency> currencyList;
         RestTemplate restTemplate = new RestTemplate();
         Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);

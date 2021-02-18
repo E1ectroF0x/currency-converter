@@ -20,11 +20,7 @@ public class Currency {
 
     @JsonProperty("Cur_ID")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JsonProperty("Cur_Scale")
-    private Double value;
 
     @JsonProperty("Cur_Name_Eng")
     private String name;
