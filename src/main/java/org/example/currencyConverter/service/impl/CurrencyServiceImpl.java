@@ -20,7 +20,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     @Autowired
     private CurrencyRepository currencyRepository;
 
-    @Value("${nbrb.api.link}")
+    @Value("https://www.nbrb.by/api/exrates")
     private String apiLink;
 
 
@@ -31,7 +31,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     private void uploadCurrencies() {
         List<Currency> currencyList;
         RestTemplate restTemplate = new RestTemplate();
-        Currency[] currencies = restTemplate.getForObject(apiLink + "/currencies", Currency[].class);
+        Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
         currencyList = currencies == null ? Collections.emptyList() : Arrays.asList(currencies);
         Date dateNow = new Date();
         currencyList = currencyList.stream()
@@ -53,14 +53,16 @@ public class CurrencyServiceImpl implements CurrencyService {
                 .findFirst()
                 .orElse(new Currency());
     }
-
-    @Override
+  /*
+     @Override
     public void saveValue() {
         Currency currency1 = new Currency();
         currency1.setName("DNUB");
         currency1.setValue(2.0);
         currencyRepository.save(currency1);
     }
+ */
+
 
 
     /*
