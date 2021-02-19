@@ -11,13 +11,8 @@ import java.util.Date;
 // TODO: add table for rates
 // rework rateService to work with DB
 
-@Entity
 @Data
-public class Rate {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class RateModel {
 
     @JsonProperty("Cur_Scale")
     private Double scale;
@@ -31,7 +26,6 @@ public class Rate {
     @JsonProperty("Cur_OfficialRate")
     private double official_rate;
 
-    @OneToOne
-    @JoinColumn(name = "currency_id", referencedColumnName = "id")
-    private Currency currency;
+    @JsonProperty("Cur_ID")
+    private Long currency_id;
 }

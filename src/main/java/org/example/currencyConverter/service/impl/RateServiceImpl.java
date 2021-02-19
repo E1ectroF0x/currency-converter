@@ -33,6 +33,7 @@ public class RateServiceImpl implements RateService {
         RestTemplate restTemplate = new RestTemplate();
         Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
         rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
+
         rateRepository.saveAll(rateList);
     }
 
