@@ -24,6 +24,7 @@ public class UpdateServiceImpl implements UpdateService
         this.currencyRepository = currencyRepository;
         restTemplate = new RestTemplate();
     }
+
     @Override
     public void updateAll() {
         rateRepository.deleteAll();
@@ -33,6 +34,7 @@ public class UpdateServiceImpl implements UpdateService
         Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
         rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
         rateRepository.saveAll(rateList);
+
         currencyRepository.deleteAll();
         List<Currency> currencyList;
         Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
