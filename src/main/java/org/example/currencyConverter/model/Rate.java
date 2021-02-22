@@ -17,10 +17,10 @@ public class Rate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long rate_id;
 
     @JsonProperty("Cur_Scale")
-    private Double scale;
+    private Double rate_scale;
 
     @JsonProperty("Cur_Name")
     private String name;
@@ -29,9 +29,9 @@ public class Rate {
     private Date date;
 
     @JsonProperty("Cur_OfficialRate")
-    private double officialRate;
+    private double official_rate;
 
     @JsonProperty("Cur_Id")
-    private String currency;
+    private String currency_id;
 
 }

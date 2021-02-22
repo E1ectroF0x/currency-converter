@@ -30,10 +30,6 @@ public class RateController {
         }
 
     }
-    @GetMapping("/update")
-    public void updateRate() {
-        rateService.uploadRates();
-    }
 
     // TODO: implement api/rates/update/{id}/{value}
     // need to implement update rate value for single currency

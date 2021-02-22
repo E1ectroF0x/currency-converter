@@ -33,10 +33,6 @@ public class CurrencyController {
         return currencyService.getAllCurrencies();
     }
 
-    @GetMapping("/update")
-    public void updateCurrency() {
-        currencyService.uploadCurrencies();
-    }
 
 
 

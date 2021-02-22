@@ -25,20 +25,6 @@ public class CurrencyServiceImpl implements CurrencyService {
 
 
     @Override
-    public void uploadCurrencies() {
-        currencyRepository.deleteAll();
-        List<Currency> currencyList;
-        RestTemplate restTemplate = new RestTemplate();
-        Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
-        currencyList = currencies == null ? Collections.emptyList() : Arrays.asList(currencies);
-        Date dateNow = new Date();
-        currencyList = currencyList.stream()
-                .filter(currency -> currency.getDate_end().getTime() > dateNow.getTime())
-                .collect(Collectors.toList());
-        currencyRepository.saveAll(currencyList);
-    }
-
-    @Override
     public List<Currency> getAllCurrencies() {
         return (List<Currency>) currencyRepository.findAll();
     }

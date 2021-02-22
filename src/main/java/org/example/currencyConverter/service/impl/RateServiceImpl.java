@@ -26,15 +26,6 @@ public class RateServiceImpl implements RateService {
 
     private List<Rate> rateList;
 
-    @Override
-    public void uploadRates(){
-        rateRepository.deleteAll();;
-        rateList = new ArrayList<>();
-        RestTemplate restTemplate = new RestTemplate();
-        Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
-        rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
-        rateRepository.saveAll(rateList);
-    }
 
     @Override
     public Rate getRateByAbbreviation(String value){
@@ -47,7 +38,7 @@ public class RateServiceImpl implements RateService {
     }
     @Override
     public Rate getRateByID(String value){
-        return rateList.stream().filter(rate -> rate.getId().toString().equals(value)).findFirst()
+        return rateList.stream().filter(rate -> rate.getCurrency_id().toString().equals(value)).findFirst()
                 .orElse(new Rate());
     }
     @Override
