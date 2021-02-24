@@ -14,8 +14,4 @@ public class UpdateController {
     @Autowired
     private UpdateService updateService;
 
-    @GetMapping
-    public void updateAll(){
-        updateService.updateAll();
-    }
 }

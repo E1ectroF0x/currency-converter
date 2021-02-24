@@ -13,8 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class UpdateServiceImpl implements UpdateService
-{
+public class UpdateServiceImpl implements UpdateService {
     private RateRepository rateRepository;
     private RestTemplate restTemplate;
     private CurrencyRepository currencyRepository;
@@ -27,14 +26,7 @@ public class UpdateServiceImpl implements UpdateService
 
     @Override
     public void updateAll() {
-        rateRepository.deleteAll();
-        currencyRepository.deleteAll();
-        List<Rate> rateList;
-        rateList = new ArrayList<>();
-        RestTemplate restTemplate = new RestTemplate();
-        Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
-        rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
-        rateRepository.saveAll(rateList);
+
 
         List<Currency> currencyList;
         Currency[] currencies = restTemplate.getForObject("https://www.nbrb.by/api/exrates/currencies", Currency[].class);
@@ -44,5 +36,14 @@ public class UpdateServiceImpl implements UpdateService
                 .filter(currency -> currency.getDate_end().getTime() > dateNow.getTime())
                 .collect(Collectors.toList());
         currencyRepository.saveAll(currencyList);
+
+        List<Rate> rateList;
+        rateList = new ArrayList<>();
+        RestTemplate restTemplate = new RestTemplate();
+        Rate[] rates = restTemplate.getForObject("https://www.nbrb.by/api/exrates/rates?periodicity=0", Rate[].class);
+        rateList = rates == null ? Collections.emptyList() : Arrays.asList(rates);
+        rateRepository.saveAll(rateList);
+
+
     }
 }

@@ -4,9 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class ValueModel {
+public class OutputModel {
 
     @JsonProperty("value")
     Double value;
 
+   public OutputModel(Double value){
+
+        this.value = value;
+
+    };
 }
+

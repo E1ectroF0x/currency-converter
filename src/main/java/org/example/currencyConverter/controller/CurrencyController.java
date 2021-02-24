@@ -1,9 +1,7 @@
 package org.example.currencyConverter.controller;
 
 import org.example.currencyConverter.model.Currency;
-import org.example.currencyConverter.model.ValueModel;
 import org.example.currencyConverter.service.CurrencyService;
-import org.example.currencyConverter.service.impl.CurrencyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

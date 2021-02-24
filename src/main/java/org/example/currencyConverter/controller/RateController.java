@@ -16,6 +16,7 @@ public class RateController {
     @Autowired
     private RateService rateService;
 
+   /*
     @GetMapping("/{value}")
     public Rate getRates(@PathVariable String value, @RequestParam(required = false) String type){
 
@@ -30,6 +31,8 @@ public class RateController {
         }
 
     }
+
+    */
 
     // TODO: implement api/rates/update/{id}/{value}
     // need to implement update rate value for single currency

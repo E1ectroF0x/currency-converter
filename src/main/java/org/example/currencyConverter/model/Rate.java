@@ -28,7 +28,7 @@ public class Rate {
     private Date rate_date;
 
     @JsonProperty("Cur_OfficialRate")
-    private double official_rate;
+    private Double official_rate;
 
     @JsonProperty("Cur_ID")
     private Long currency_id;

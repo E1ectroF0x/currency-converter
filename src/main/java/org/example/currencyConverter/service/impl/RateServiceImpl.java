@@ -27,17 +27,9 @@ public class RateServiceImpl implements RateService {
     private List<Rate> rateList;
 
 
-    @Override
-    public Rate getRateByAbbreviation(String value){
-        /*return rateList.stream().filter(rate -> rate.getAbbreviation().equals(value))
-                .findFirst()
-                .orElse(new Rate());
 
-         */
-        return null;
-    }
     @Override
-    public Rate getRateByID(String value){
+    public Rate getRateByID(Long value){
         return rateList.stream().filter(rate -> rate.getCurrency_id().toString().equals(value)).findFirst()
                 .orElse(new Rate());
     }
