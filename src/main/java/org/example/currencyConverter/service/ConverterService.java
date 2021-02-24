@@ -6,6 +6,6 @@ import org.example.currencyConverter.model.OutputModel;
 
 public interface ConverterService {
 
-    OutputModel convert(InputModel inputModel);
+    OutputModel convertValue(InputModel inputModel);
 
 }
